@@ -1,0 +1,37 @@
+package org.learners.app.controller.university;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+@RestController
+@RequestMapping("/api")
+@PropertySource("{ingestion}")
+public class UniversityController {
+	
+	@Autowired
+	RestTemplate restTemplate;
+	
+	@Value("{college}")
+	String url;
+
+	@GetMapping(value = "/get")
+	public String createUser() {
+		
+		//Feign Problem 1
+		//calling Rest Service of college with Rest Template
+		
+		String data = restTemplate.getForObject(url, String.class);
+		
+		Object obj = new ObjectMapper().readValue(data, Object.class);
+		
+		return "created User";
+		
+	}
+}

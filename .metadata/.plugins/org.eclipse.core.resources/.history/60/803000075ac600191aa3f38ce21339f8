@@ -1,0 +1,25 @@
+package org.learners.app.controller.university;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+@RestController
+@RequestMapping("/api")
+public class UniversityController {
+	
+	RestTemplate restTemplate = new RestTemplate();
+
+	@GetMapping(value = "/get")
+	public String createUser() {
+		
+		//Feign Problem 1
+		//calling Rest Service of college with Rest Template
+		
+		
+		
+		return "created User";
+		
+	}
+}
